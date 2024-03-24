@@ -9,11 +9,18 @@ import {
 } from 'react-router-dom'
 
 import Root from './routes/root'
+import Countries from './routes/countries'
 
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <Root/>
+		element: <Root/>,
+		children: [
+			{
+				path: 'countries',
+				element: <Countries/>
+			}
+		]
 	}
 ])
 
