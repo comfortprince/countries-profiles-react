@@ -1,3 +1,7 @@
+import { filterOptions } from '../constants.js'
+
+import Select from '../components/select-dropdown'
+
 export default function Countries() {
 	return (
 		<>
@@ -7,7 +11,7 @@ export default function Countries() {
 				"
 			>
 				<div
-	        role="search" 
+	        role="search"
 	        className="
 	        	bg-white dark:bg-dark-blue 
 	        	w-full md:w-96 pl-6 h-12 rounded 
@@ -30,9 +34,9 @@ export default function Countries() {
 			        />
 			      </form>  
 			  </div>
-	      <div>
-	      	Region Filter
-	      </div>
+			  <div>
+			  	<Select options={ filterOptions } />
+			  </div>
 			</section>
 			<section>
 				Countries
