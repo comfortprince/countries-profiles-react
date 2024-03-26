@@ -1,8 +1,58 @@
+import { useState, useEffect } from 'react'
+
+import { Link } from 'react-router-dom'
+
 import { filterOptions } from '../constants.js'
+import { getCountries } from '../countries.js'
 
 import Select from '../components/select-dropdown'
 
 export default function Countries() {
+	const [countries, setCountries] = useState([])
+	const [isLoading, setIsLoading] = useState(false)
+
+	useEffect(() => {
+		let startIndex = 0, limit = 10
+		setIsLoading(true)
+
+		getCountries(startIndex, limit)
+		.then((countries) => {
+			setIsLoading(false)
+			setCountries(countries)
+		})
+		.catch((error) => {
+			setIsLoading(false)
+			console.log(error.message)
+		})
+
+		const handleScroll = function () {
+			const documentHeight = document.body.scrollHeight
+			const windowHeight = document.documentElement.clientHeight
+			const scrollOffset = window.pageYOffset
+
+			if(documentHeight === windowHeight + scrollOffset) {
+				limit += 10
+				setIsLoading(true)
+
+				getCountries(startIndex, limit)
+				.then((countries) => {
+					setIsLoading(false)
+					setCountries(countries)
+				})
+				.catch((error) => {
+					setIsLoading(false)
+					console.log(error.message)
+				})
+			}
+		}
+
+		window.addEventListener('scroll', handleScroll)
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll)
+		}
+	}, [])
+
 	return (
 		<>
 			<section
@@ -41,44 +91,23 @@ export default function Countries() {
 			<section
 				className="
 					max-md:px-6 mt-12
-					grid md:grid-cols-3 lg:grid-cols-4 gap-12
 				"
 			>
-				<Country country={{
-					imgUrl: "",
-					imgAlt: "country.flags.alt",
-					commonName: "Zimbabwe",
-					population: "1000000",
-					region: "Africa",
-					capital: "Harare"
-				}}/>
+				<div
+					className="
+						grid md:grid-cols-3 lg:grid-cols-4 gap-12
+					"
+				>
+					{countries.map((country, ndx) => (
+						<Country key={ndx} country={country}/>
+					))}
+				</div>
 
-				<Country country={{
-					imgUrl: "",
-					imgAlt: "country.flags.alt",
-					commonName: "Zimbabwe",
-					population: "1000000",
-					region: "Africa",
-					capital: "Harare"
-				}}/>
-
-				<Country country={{
-					imgUrl: "",
-					imgAlt: "country.flags.alt",
-					commonName: "Zimbabwe",
-					population: "1000000",
-					region: "Africa",
-					capital: "Harare"
-				}}/>
-
-				<Country country={{
-					imgUrl: "",
-					imgAlt: "country.flags.alt",
-					commonName: "Zimbabwe",
-					population: "1000000",
-					region: "Africa",
-					capital: "Harare"
-				}}/>
+				{isLoading && 
+					<div>
+						Loading
+					</div>
+				}
 			</section>
 		</>
 	)
@@ -86,7 +115,7 @@ export default function Countries() {
 
 function Country({country}) {
 	return (
-		<a 
+		<Link 
 	    className="
 	    	shadow 
 	    	flex flex-col justify-between 
@@ -126,6 +155,6 @@ function Country({country}) {
           {country.capital}
         </p>
       </div>
-    </a>
+    </Link>
 	)
 }
