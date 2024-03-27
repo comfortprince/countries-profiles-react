@@ -4,7 +4,13 @@ import { filterOptions } from '../../constants.js'
 
 import Select from '../../components/select-dropdown'
 
-export default function FiltersSection() {
+export default function FiltersSection({
+	filterText, 
+	regionFilterText, 
+	onFilterTextChange, 
+	onRegionFilterTextChange
+}) {
+
 	return (
 		<section
 			className="
@@ -32,11 +38,17 @@ export default function FiltersSection() {
 	          type="text"
 	          name="q" 
 	          placeholder="Search a country..."
+	          value={filterText}
+	          onChange={(e) => {onFilterTextChange(e.target.value)}}
 	        />
 	      </form>  
 		  </div>
 		  <div>
-		  	<Select options={ filterOptions } />
+		  	<Select 
+		  		options={ filterOptions } 
+		  		regionFilterText={regionFilterText}
+		  		onRegionFilterTextChange={onRegionFilterTextChange} 
+		  	/>
 		  </div>
 		</section>
 	)

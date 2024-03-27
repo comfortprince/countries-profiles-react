@@ -1,6 +1,10 @@
 import { useState } from 'react'
 
-export default function Select({ options }) {
+export default function Select({ 
+	options,
+	regionFilterText,
+	onRegionFilterTextChange
+}) {
 	const [isOpen, setIsOpen] = useState(false)
 
 	return(
@@ -17,7 +21,7 @@ export default function Select({ options }) {
 				}}
 			>
 				<span>
-					Filter by Region
+					{regionFilterText ? regionFilterText : 'Filter by Region'} 
 				</span>
 				<span>
 					<i className="fa-solid fa-angle-down"></i>
@@ -36,6 +40,10 @@ export default function Select({ options }) {
 								`}
 								onClick={() => {
 									setIsOpen(false)
+									option.toLowerCase().trim() 
+										=== String('Filter by Region').toLowerCase().trim() 
+										? onRegionFilterTextChange('')
+										: onRegionFilterTextChange(option)
 								}}
 							>
 								{option}

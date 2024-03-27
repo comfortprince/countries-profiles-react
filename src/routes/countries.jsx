@@ -20,7 +20,6 @@ export default function Countries() {
 		.then((countries) => {
 			setIsLoading(false)
 			setCountries(countries)
-			console.log(countries)
 		})
 		.catch((error) => {
 			setIsLoading(false)
@@ -34,7 +33,6 @@ export default function Countries() {
 
 			if(documentHeight === windowHeight + scrollOffset && hasMore(limit)) {
 				limit += 12
-				console.log(limit)
 				setIsLoading(true)
 
 				getCountries(startIndex, limit)
@@ -56,10 +54,27 @@ export default function Countries() {
 		}
 	}, [])
 
+	return <MainContainer countries={countries} isLoading={isLoading}/>
+}
+
+function MainContainer({countries, isLoading}) {
+	const [filterText, setFilterText] = useState("")
+	const [regionFilterText, setRegionFilterText] = useState("")
+
+	const filteredCountries = countries.filter((country) => {
+		return country.commonName.toLowerCase().includes(filterText.toLowerCase()) 
+			&& country.region.toLowerCase().includes(regionFilterText.toLowerCase())
+	})
+
 	return (
 		<>
-			<FiltersSection/>
-			<CountriesSection countries={countries}/>
+			<FiltersSection 
+				filterText={filterText} 
+				regionFilterText={regionFilterText}
+				onFilterTextChange={setFilterText}
+				onRegionFilterTextChange={setRegionFilterText}
+			/>
+			<CountriesSection countries={filteredCountries}/>
 
 			{isLoading && 
 				<div>
