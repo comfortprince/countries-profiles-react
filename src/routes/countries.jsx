@@ -8,6 +8,8 @@ import FiltersSection from './sections/filters-section'
 export default function Countries() {
 	const [countries, setCountries] = useState([])
 	const [isLoading, setIsLoading] = useState(false)
+	const [filterText, setFilterText] = useState("")
+	const [regionFilterText, setRegionFilterText] = useState("")
 
 	useEffect(() => {
 		const startIndex = 0
@@ -31,7 +33,12 @@ export default function Countries() {
 			const windowHeight = document.documentElement.clientHeight
 			const scrollOffset = window.pageYOffset
 
-			if(documentHeight === windowHeight + scrollOffset && hasMore(limit)) {
+			console.log(filterText)
+
+			if(windowHeight + scrollOffset > documentHeight - 100  
+				&& hasMore(limit)
+				&& !(filterText || regionFilterText)
+			) {
 				limit += 12
 				setIsLoading(true)
 
@@ -52,27 +59,56 @@ export default function Countries() {
 		return () => {
 			window.removeEventListener('scroll', handleScroll)
 		}
-	}, [])
+	}, [filterText, regionFilterText])
 
-	return <MainContainer countries={countries} isLoading={isLoading}/>
+	return (
+		<MainContainer 
+			countries={countries} 
+			isLoading={isLoading}
+			filterText={filterText} 
+			regionFilterText={regionFilterText}
+			onFilterTextChange={setFilterText}
+			onRegionFilterTextChange={setRegionFilterText}
+		/>
+	)
 }
 
-function MainContainer({countries, isLoading}) {
-	const [filterText, setFilterText] = useState("")
-	const [regionFilterText, setRegionFilterText] = useState("")
+function MainContainer({
+	countries, 
+	isLoading,
+	filterText,
+	regionFilterText,
+	onFilterTextChange,
+	onRegionFilterTextChange
+}) {
+	const [filteredCountries, setFilteredCountries] = useState([])
 
-	const filteredCountries = countries.filter((country) => {
-		return country.commonName.toLowerCase().includes(filterText.toLowerCase()) 
-			&& country.region.toLowerCase().includes(regionFilterText.toLowerCase())
-	})
+	useEffect(() => {
+		console.log('Re rendered')
+
+		if(filterText || regionFilterText){
+			getCountries(0, 300)
+			.then((countries) => {
+				setFilteredCountries(countries.filter((country) => {
+					return country.commonName.toLowerCase().includes(filterText.toLowerCase()) 
+						&& country.region.toLowerCase().includes(regionFilterText.toLowerCase())
+				}))
+			})
+			.catch((error) => {
+				console.log(error.message)
+			})
+		} else {
+			setFilteredCountries(countries)
+		}
+	}, [filterText, regionFilterText, countries])
 
 	return (
 		<>
 			<FiltersSection 
 				filterText={filterText} 
 				regionFilterText={regionFilterText}
-				onFilterTextChange={setFilterText}
-				onRegionFilterTextChange={setRegionFilterText}
+				onFilterTextChange={onFilterTextChange}
+				onRegionFilterTextChange={onRegionFilterTextChange}
 			/>
 			<CountriesSection countries={filteredCountries}/>
 

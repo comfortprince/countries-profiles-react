@@ -45,7 +45,7 @@ function Country({country}) {
           <span className="font-semibold">
             Population:&nbsp;
           </span> 
-          {country.population}
+          {country.population.toLocaleString()}
         </p>
 
         <p>
