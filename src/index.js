@@ -10,6 +10,11 @@ import {
 
 import Root from './routes/root'
 import Countries from './routes/countries'
+import Country, {
+	loader as countryLoader
+} from './routes/country'
+
+import { getCountries, getCountriesByCodes } from './countries.js'
 
 const router = createBrowserRouter([
 	{
@@ -19,7 +24,12 @@ const router = createBrowserRouter([
 			{
 				path: 'countries',
 				element: <Countries/>
-			}
+			},
+			{
+				path: 'countries/:commonName',
+				loader: countryLoader,
+				element: <Country/>
+			},
 		]
 	}
 ])
