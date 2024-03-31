@@ -1,4 +1,4 @@
-import {useLoaderData} from 'react-router-dom'
+import {useLoaderData, useNavigate} from 'react-router-dom'
 
 import { 
 	getCountry,
@@ -6,14 +6,42 @@ import {
 } from '../countries.js'
 
 export default function Country() {
+	const navigate = useNavigate()
 	const country = useLoaderData()
 	console.log(country)
 
 	return (
 		<>
+		{/*Country Navigation Section*/}
+    <section class="px-4 md:px-20 flex justify-between">
+      <button 
+      	class="
+      		bg-white dark:bg-dark-blue 
+      		inline-flex items-center justify-center gap-3 
+      		px-8 py-2 text-sm rounded shadow"
+      	onClick={() => { navigate(-1) }}	
+      >
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>
+          Back
+        </span>
+      </button>
+      <button 
+      	class="
+      		bg-white dark:bg-dark-blue 
+      		inline-flex items-center justify-center gap-3 
+      		px-8 py-2 text-sm rounded shadow"
+      	onClick={() => { navigate(1) }}	
+      >
+        <span>
+          Forward
+        </span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </section>
 		<section
 			className=" 
-				flex flex-col md:flex-row md:justify-between gap-12
+				flex flex-col md:flex-row md:justify-between md:items-center gap-12 mt-4
 			"
 		>
 			<div className="md:w-1/2">
