@@ -13,8 +13,8 @@ export default function Country() {
 	const HIDDEN = false
 	const navigate = useNavigate()
 	const country = useLoaderData()
-	const [nativeNamesModalState, setNativeNamesModalState] = useState(VISIBLE)
-	console.log(country)
+	const [nativeNamesModalState, setNativeNamesModalState] = useState(HIDDEN)
+	const nativeNames = getNativeNames(country)
 
 	return (
 		<>
@@ -65,37 +65,16 @@ export default function Country() {
 		      </h2>
 
 		      <div className="flex flex-col max-md:gap-8 gap-4 lg:flex-row lg:justify-between">
-		        <div className="flex flex-col gap-1 lg:w-1/2 overflow-hidden">
+		        <div className="flex flex-col gap-1 lg:w-1/2">
 		          <p className="flex relative">
 		            <span className="font-semibold pr-1">
 		              Native&nbsp;Name: 
 		            </span>
-		            {(() => {
-		              let nativeNames = country.nativeName
-		              let lastNativeName = ""
-		              let nativeNameKeys = Object.keys(nativeNames)
-		              let uniqueNativeNamesKeys = nativeNameKeys.filter((key) => {
-		              	if(lastNativeName !== nativeNames[key].common){
-		              		lastNativeName = nativeNames[key].common
-		              		return true
-		              	}
-		              	return false
-		              })
-
-		              return (
-		              	<span
-		              		style={{
-												overflow: 'hidden',
-												whiteSpace: 'nowrap',
-												textOverflow: 'ellipsis'
-											}}
-		              	>
-		              		{uniqueNativeNamesKeys.map((key, ndx, keys) => {
-		              			return nativeNames[key].common + (keys.length - 1 !== ndx ? ', ' : '')
-		              		})}
-		              	</span>
-		              )
-		            })()}
+		            <span className="truncate">
+              		{nativeNames.map((nativeName, ndx, nativeNames) => {
+              			return nativeName + (nativeNames.length - 1 !== ndx ? ', ' : '')
+              		})}
+              	</span>
 
 		            <button 
 		            	className="absolute right-0" 
@@ -108,7 +87,7 @@ export default function Country() {
 		            	modalState = {nativeNamesModalState}
 		            	handleWrapperClick = {setNativeNamesModalState}
 		            	heading = {'Native Names'}
-		            	items = {['Zimbabwe', 'Dzimbadzemabwe']}
+		            	items = {nativeNames}
 		            />
 		          </p>
 		          <p>
@@ -208,6 +187,23 @@ export default function Country() {
 		</section>
 		</>
 	)
+}
+
+function getNativeNames(country) {
+	const nativeNames = country.nativeName
+  let lastNativeName = ""
+  const nativeNameKeys = Object.keys(nativeNames)
+  const uniqueNativeNamesKeys = nativeNameKeys.filter((key) => {
+  	if(lastNativeName !== nativeNames[key].common){
+  		lastNativeName = nativeNames[key].common
+  		return true
+  	}
+  	return false
+  })
+
+  return uniqueNativeNamesKeys.map((key) => {
+		return nativeNames[key].common
+	})
 }
 
 export async function loader({params}) {

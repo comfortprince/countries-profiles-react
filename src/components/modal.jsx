@@ -7,7 +7,7 @@ export default function Modal({modalState, heading, items, handleWrapperClick}) 
 			<div 
 	    	className="
 	    		absolute right-0 
-	    		w-60 px-6 py-2 rounded shadow-lg shadow-black
+	    		w-60 px-6 py-2 rounded shadow-md shadow-black
 	    		bg-white dark:bg-dark-blue z-10
 	    	"
 	    	style={{
