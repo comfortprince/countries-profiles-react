@@ -6,10 +6,159 @@ import {
 } from '../countries.js'
 
 export default function Country() {
-	console.log(useLoaderData())
+	const country = useLoaderData()
+	console.log(country)
 
 	return (
-		<span>{"dsd"}</span>
+		<>
+		<section
+			className=" 
+				flex flex-col md:flex-row md:justify-between gap-12
+			"
+		>
+			<div className="md:w-1/2">
+		    <img 
+		      className="w-full h-auto rounded-t" 
+		      src={country.imgUrl} 
+		      alt={country.imgAlt}
+		    />
+		  </div>
+
+		  <div className="md:w-1/2">
+		    <div className="flex flex-col gap-8">
+		      <h2 className="text-2xl font-semibold">
+		        {country.commonName}
+		      </h2>
+
+		      <div className="flex flex-col max-md:gap-8 gap-4 lg:flex-row lg:justify-between">
+		        <div className="flex flex-col gap-1 md:w-1/2 overflow-hidden">
+		          <p className="flex">
+		            <span className="font-semibold pr-1">
+		              Native&nbsp;Name: 
+		            </span>
+		            {(() => {
+		              let nativeNames = country.nativeName
+		              let lastNativeName = ""
+		              let nativeNameKeys = Object.keys(nativeNames)
+		              let uniqueNativeNamesKeys = nativeNameKeys.filter((key) => {
+		              	if(lastNativeName !== nativeNames[key].common){
+		              		lastNativeName = nativeNames[key].common
+		              		return true
+		              	}
+		              	return false
+		              })
+
+		              return (
+		              	<span
+		              		style={{
+												overflow: 'hidden',
+												whiteSpace: 'nowrap',
+												textOverflow: 'ellipsis'
+											}}
+		              	>
+		              		{uniqueNativeNamesKeys.map((key, ndx, keys) => {
+		              			return nativeNames[key].common + (keys.length - 1 !== ndx ? ', ' : '')
+		              		})}
+		              	</span>
+		              )
+		            })()}
+		          </p>
+		          <p>
+		            <span className="font-semibold pr-1">
+		              Population: 
+		            </span>
+		            <span>
+		              {country.population.toLocaleString()}
+		            </span>
+		          </p>
+		          <p>
+		            <span className="font-semibold pr-1">
+		              Region: 
+		            </span>
+		            <span>
+		              {country.region}
+		            </span>
+		          </p>
+		          <p>
+		            <span className="font-semibold pr-1">
+		              Sub Region: 
+		            </span>
+		            <span>
+		              {country.subregion}
+		            </span>
+		          </p>
+		          <p>
+		            <span className="font-semibold pr-1">
+		              Capital: 
+		            </span>
+		            <span>
+		              {country.capital}
+		            </span>
+		          </p>
+		        </div>
+		        <div className="flex flex-col gap-1 md:w-1/2 overflow-hidden">
+		          <p>
+		            <span className="font-semibold pr-1">
+		              Top Level Domain: 
+		            </span>
+		            <span>
+		              {country.topLevelDomain}
+		            </span>
+		          </p>
+		          <p>
+		            <span className="font-semibold pr-1">
+		              Currencies: 
+		            </span>
+		            {Object.keys(country.currencies).map((key) => (
+	              	<span>
+	                  {key}
+	                </span>
+	              ))}
+		          </p>
+		          <p className="flex">
+		            <span className="font-semibold pr-1">
+		              Languages: 
+		            </span>
+		            <span
+		            	style={{
+												overflow: 'hidden',
+												whiteSpace: 'nowrap',
+												textOverflow: 'ellipsis'
+											}}
+		            >
+		            	{Object.keys(country.languages).map((key, ndx, keys) => (
+		            		country.languages[key] 
+		            		+ (keys.length - 1 !== ndx ? ', ' : '')
+		            	))}
+		            </span>
+		          </p>
+		        </div>
+		      </div>
+		      <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
+		        <div className="text-lg font-semibold pr-1">
+		          Border Countries:
+		        </div>
+		        <div className="flex flex-wrap gap-2">
+		          {country.borderCountries.map((country) => (
+		          	<a
+		          		href={`/countries/${country}`} 
+		          		className="
+		          			inline-block 
+		          			bg-white dark:bg-dark-blue 
+		          			py-2 px-8
+		          			shadow font-light
+		          			rounded
+		          		"
+		          	>
+                  {country}
+                </a>
+		          ))}
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</section>
+		</>
 	)
 }
 
