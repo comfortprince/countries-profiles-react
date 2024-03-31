@@ -1,13 +1,19 @@
 import {useLoaderData, useNavigate} from 'react-router-dom'
+import { useState } from 'react'
 
 import { 
 	getCountry,
 	getCountriesByCodes
 } from '../countries.js'
 
+import Modal from '../components/modal'
+
 export default function Country() {
+	const VISIBLE = true
+	const HIDDEN = false
 	const navigate = useNavigate()
 	const country = useLoaderData()
+	const [nativeNamesModalState, setNativeNamesModalState] = useState(VISIBLE)
 	console.log(country)
 
 	return (
@@ -59,8 +65,8 @@ export default function Country() {
 		      </h2>
 
 		      <div className="flex flex-col max-md:gap-8 gap-4 lg:flex-row lg:justify-between">
-		        <div className="flex flex-col gap-1 md:w-1/2 overflow-hidden">
-		          <p className="flex">
+		        <div className="flex flex-col gap-1 lg:w-1/2 overflow-hidden">
+		          <p className="flex relative">
 		            <span className="font-semibold pr-1">
 		              Native&nbsp;Name: 
 		            </span>
@@ -90,6 +96,20 @@ export default function Country() {
 		              	</span>
 		              )
 		            })()}
+
+		            <button 
+		            	className="absolute right-0" 
+		            	onClick={() => {setNativeNamesModalState(VISIBLE)}}
+		            >
+		            	<span className="invisible">cc</span>
+		            </button>
+
+		            <Modal 
+		            	modalState = {nativeNamesModalState}
+		            	handleWrapperClick = {setNativeNamesModalState}
+		            	heading = {'Native Names'}
+		            	items = {['Zimbabwe', 'Dzimbadzemabwe']}
+		            />
 		          </p>
 		          <p>
 		            <span className="font-semibold pr-1">
@@ -124,7 +144,7 @@ export default function Country() {
 		            </span>
 		          </p>
 		        </div>
-		        <div className="flex flex-col gap-1 md:w-1/2 overflow-hidden">
+		        <div className="flex flex-col gap-1 lg:w-1/2 overflow-hidden">
 		          <p>
 		            <span className="font-semibold pr-1">
 		              Top Level Domain: 
