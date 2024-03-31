@@ -12,7 +12,9 @@ export default function Root() {
 				"
 			>
 				<div className="text-sm md:text-2xl font-bold">
-			      Where in the world?
+			      <a href="/">
+			      	Where in the world?
+			      </a>
 			    </div>
 			    <button id="dark-mode-toggler" className="max-md:text-sm font-medium flex items-center gap-2">
 			      <span>
