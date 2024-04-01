@@ -31,7 +31,7 @@ function Country({country}) {
 	    to={`${country.commonName}`}
   	>
       <img 
-        className="min-w-full h-auto rounded-t" 
+        className="min-w-full h-40 rounded-t overflow-y-scroll" 
         src={country.imgUrl} 
         alt={country.imgAlt}
       />
