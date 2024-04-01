@@ -1,4 +1,4 @@
-import {useLoaderData, useNavigate} from 'react-router-dom'
+import {useLoaderData} from 'react-router-dom'
 import { useState } from 'react'
 
 import { 
@@ -8,43 +8,20 @@ import {
 
 import Modal from '../components/modal'
 
+import NavSection from './sections/country/nav-section'
+
 export default function Country() {
 	const VISIBLE = true
 	const HIDDEN = false
-	const navigate = useNavigate()
 	const country = useLoaderData()
 	const [nativeNamesModalState, setNativeNamesModalState] = useState(HIDDEN)
+	const [isNativeNamesModalOpen, setIsNativeNamesModalOpen] = useState(true)
 	const nativeNames = getNativeNames(country)
 
 	return (
 		<>
 		{/*Country Navigation Section*/}
-    <section class="px-4 md:px-20 flex justify-between">
-      <button 
-      	class="
-      		bg-white dark:bg-dark-blue 
-      		inline-flex items-center justify-center gap-3 
-      		px-8 py-2 text-sm rounded shadow"
-      	onClick={() => { navigate(-1) }}	
-      >
-        <i class="fa-solid fa-arrow-left"></i>
-        <span>
-          Back
-        </span>
-      </button>
-      <button 
-      	class="
-      		bg-white dark:bg-dark-blue 
-      		inline-flex items-center justify-center gap-3 
-      		px-8 py-2 text-sm rounded shadow"
-      	onClick={() => { navigate(1) }}	
-      >
-        <span>
-          Forward
-        </span>
-        <i class="fa-solid fa-arrow-right"></i>
-      </button>
-    </section>
+    <NavSection/>
 		<section
 			className=" 
 				flex flex-col md:flex-row md:justify-between md:items-center gap-12 mt-4
@@ -79,6 +56,9 @@ export default function Country() {
 		            <button 
 		            	className="absolute right-0" 
 		            	onClick={() => {setNativeNamesModalState(VISIBLE)}}
+		            	style={{
+		            		display: isNativeNamesModalOpen ? 'inline' : 'none'
+		            	}}
 		            >
 		            	<span className="invisible">cc</span>
 		            </button>
@@ -91,6 +71,7 @@ export default function Country() {
 		            />
 		          </p>
 		          <p>
+
 		            <span className="font-semibold pr-1">
 		              Population: 
 		            </span>
