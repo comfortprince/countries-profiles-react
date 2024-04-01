@@ -1,5 +1,5 @@
 import {useLoaderData} from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import { 
 	getCountry,
@@ -11,12 +11,9 @@ import Modal from '../components/modal'
 import NavSection from './sections/country/nav-section'
 
 export default function Country() {
-	const VISIBLE = true
-	const HIDDEN = false
 	const country = useLoaderData()
-	const [nativeNamesModalState, setNativeNamesModalState] = useState(HIDDEN)
-	const [isNativeNamesModalOpen, setIsNativeNamesModalOpen] = useState(true)
 	const nativeNames = getNativeNames(country)
+	const languages = getLanguages(country)
 
 	return (
 		<>
@@ -47,57 +44,55 @@ export default function Country() {
 		            <span className="font-semibold pr-1">
 		              Native&nbsp;Name: 
 		            </span>
-		            <MultipleDataValues 
-		            	modalState={nativeNamesModalState} 
+		            <MultipleDataValues  
 		            	heading={"Native Items"} 
-		            	items={nativeNames} 
-		            	setModalState={setNativeNamesModalState}
+		            	items={nativeNames}
 		            />
 		          </div>
-		          <p>
-
+		          <div>
 		            <span className="font-semibold pr-1">
 		              Population: 
 		            </span>
 		            <span>
 		              {country.population.toLocaleString()}
 		            </span>
-		          </p>
-		          <p>
+		          </div>
+		          <div>
 		            <span className="font-semibold pr-1">
 		              Region: 
 		            </span>
 		            <span>
 		              {country.region}
 		            </span>
-		          </p>
-		          <p>
+		          </div>
+		          <div>
 		            <span className="font-semibold pr-1">
 		              Sub Region: 
 		            </span>
 		            <span>
 		              {country.subregion}
 		            </span>
-		          </p>
-		          <p>
+		          </div>
+		          <div className="flex relative">
 		            <span className="font-semibold pr-1">
 		              Capital: 
 		            </span>
-		            <span>
-		              {country.capital}
-		            </span>
-		          </p>
+		            <MultipleDataValues  
+		            	heading={"Capital Cities"} 
+		            	items={country.capital}
+		            />
+		          </div>
 		        </div>
-		        <div className="flex flex-col gap-1 lg:w-1/2 overflow-hidden">
-		          <p>
+		        <div className="flex flex-col gap-1 lg:w-1/2">
+		          <div>
 		            <span className="font-semibold pr-1">
 		              Top Level Domain: 
 		            </span>
 		            <span>
 		              {country.topLevelDomain}
 		            </span>
-		          </p>
-		          <p>
+		          </div>
+		          <div>
 		            <span className="font-semibold pr-1">
 		              Currencies: 
 		            </span>
@@ -106,24 +101,16 @@ export default function Country() {
 	                  {key}
 	                </span>
 	              ))}
-		          </p>
-		          <p className="flex">
+		          </div>
+		          <div className="flex relative">
 		            <span className="font-semibold pr-1">
 		              Languages: 
 		            </span>
-		            <span
-		            	style={{
-												overflow: 'hidden',
-												whiteSpace: 'nowrap',
-												textOverflow: 'ellipsis'
-											}}
-		            >
-		            	{Object.keys(country.languages).map((key, ndx, keys) => (
-		            		country.languages[key] 
-		            		+ (keys.length - 1 !== ndx ? ', ' : '')
-		            	))}
-		            </span>
-		          </p>
+		            <MultipleDataValues  
+		            	heading={"Languages"} 
+		            	items={languages}
+		            />
+		          </div>
 		        </div>
 		      </div>
 		      <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
@@ -154,19 +141,20 @@ export default function Country() {
 	)
 }
 
-function MultipleDataValues({modalState, heading, items, setModalState}) {
+function MultipleDataValues({heading, items}) {
 	const VISIBLE = true
 	const HIDDEN = false
 	const [spanIsOverflown, setSpanIsOverflown] = useState(false)
+	const [modalState, setModalState] = useState(HIDDEN)
+	const valuesSpanRef = useRef(null)
 
 	useEffect(()=>{
-		const valuesSpan = document.querySelector('#values-span')
-		setSpanIsOverflown(valuesSpan.scrollWidth > valuesSpan.clientWidth)
+		setSpanIsOverflown(valuesSpanRef.current.scrollWidth > valuesSpanRef.current.clientWidth)
 	}, [])
 
 	return (
 		<>
-			<span id="values-span" className="truncate">
+			<span ref={valuesSpanRef} className="truncate">
     		{items.map((item, ndx, items) => {
     			return item + (items.length - 1 !== ndx ? ', ' : '')
     		})}
@@ -207,6 +195,10 @@ function getNativeNames(country) {
   return uniqueNativeNamesKeys.map((key) => {
 		return nativeNames[key].common
 	})
+}
+
+function getLanguages(country) {
+	return Object.keys(country.languages).map((key) => (country.languages[key]))
 }
 
 export async function loader({params}) {

@@ -17,8 +17,8 @@ export default function Modal({modalState, heading, items, handleWrapperClick}) 
 				<ul className="grid gap-1">
 					<li className="font-semibold">{heading}</li>
 					{
-						items.map((item)=>(
-							<li key={item}>{item}</li>
+						items.map((item, ndx)=>(
+							<li key={`${item}-${ndx}`}>{item}</li>
 						))
 					}
 				</ul>
