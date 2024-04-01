@@ -5,7 +5,34 @@ export default function Index() {
 	return (
 		<>
 			<section className="py-6">
-				
+				<div className="flex flex-col-reverse max-md:gap-4 md:flex-row justify-between relative">
+					<div className="
+						md:h-[25rem] 
+						flex flex-col justify-center max-md:items-center 
+						gap-4 max-md:text-center"
+					>
+						<h1 className="text-5xl font-semibold">Discover the World!</h1>
+						<p>
+							Explore countries and their fascinating cultures, 
+							<br/> landscapes, and historical landmarks.
+						</p>
+						<a 
+							className="
+								px-5 py-2 w-52 text-lg
+								inline-grid place-items-center 
+								rounded
+								bg-orange-300 dark:bg-purple-900
+							" 
+							href="/countries"
+						>
+							Browse Countries
+						</a>
+					</div>
+					<img 
+						className="h-[25rem] w-[25rem] rounded-full lg:absolute top-0 right-32"
+						src={heroImage}
+					/>
+				</div>
 			</section>
 			<section className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
 				{features.map((feature) => (
