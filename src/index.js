@@ -14,6 +14,8 @@ import Country, {
 	loader as countryLoader
 } from './routes/country'
 
+import Index from './routes/index'
+
 import { getCountries, getCountriesByCodes } from './countries.js'
 
 const router = createBrowserRouter([
@@ -21,6 +23,10 @@ const router = createBrowserRouter([
 		path: '/',
 		element: <Root/>,
 		children: [
+			{
+				index: true,
+				element: <Index/>
+			},
 			{
 				path: 'countries',
 				element: <Countries/>
