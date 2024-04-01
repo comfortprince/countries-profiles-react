@@ -47,27 +47,11 @@ export default function Country() {
 		            <span className="font-semibold pr-1">
 		              Native&nbsp;Name: 
 		            </span>
-		            <span className="truncate">
-              		{nativeNames.map((nativeName, ndx, nativeNames) => {
-              			return nativeName + (nativeNames.length - 1 !== ndx ? ', ' : '')
-              		})}
-              	</span>
-
-		            <button 
-		            	className="absolute right-0" 
-		            	onClick={() => {setNativeNamesModalState(VISIBLE)}}
-		            	style={{
-		            		display: isNativeNamesModalOpen ? 'inline' : 'none'
-		            	}}
-		            >
-		            	<span className="invisible">cc</span>
-		            </button>
-
-		            <Modal 
-		            	modalState = {nativeNamesModalState}
-		            	handleWrapperClick = {setNativeNamesModalState}
-		            	heading = {'Native Names'}
-		            	items = {nativeNames}
+		            <MultipleDataValues 
+		            	modalState={nativeNamesModalState} 
+		            	heading={"Native Items"} 
+		            	items={nativeNames} 
+		            	setModalState={setNativeNamesModalState}
 		            />
 		          </p>
 		          <p>
@@ -166,6 +150,39 @@ export default function Country() {
 		    </div>
 		  </div>
 		</section>
+		</>
+	)
+}
+
+function MultipleDataValues({modalState, heading, items, setModalState}) {
+	const VISIBLE = true
+	const HIDDEN = false
+	const [spanIsOverflown, setSpanIsOverflown] = useState(true)
+
+	return (
+		<>
+			<span className="truncate">
+    		{items.map((item, ndx, items) => {
+    			return item + (items.length - 1 !== ndx ? ', ' : '')
+    		})}
+    	</span>
+
+      <button 
+      	className="absolute right-0" 
+      	onClick={() => {setModalState(VISIBLE)}}
+      	style={{
+      		display: spanIsOverflown ? 'inline' : 'none'
+      	}}
+      >
+      	<span className="invisible">cc</span>
+      </button>
+
+      <Modal 
+      	modalState = {modalState}
+      	handleWrapperClick = {() => {setModalState(HIDDEN)}}
+      	heading = {heading}
+      	items = {items}
+      />
 		</>
 	)
 }

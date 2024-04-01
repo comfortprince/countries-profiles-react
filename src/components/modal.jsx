@@ -25,7 +25,7 @@ export default function Modal({modalState, heading, items, handleWrapperClick}) 
 			</div>
 			<div 
 				className="top-0 left-0 w-full h-full fixed" 
-				onClick={() => {handleWrapperClick(HIDDEN)}}
+				onClick={handleWrapperClick}
 				style={{
 	    		display: modalState === HIDDEN ? "none" : "block" 
 	    	}}
