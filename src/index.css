@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*,
+*::before,
+*::after{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+@layer base{
+	body{
+		@apply bg-very-light-gray dark:bg-very-dark-blue-dark-mode;
+	}
+}
