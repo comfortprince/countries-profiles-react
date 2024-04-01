@@ -1,5 +1,5 @@
 import {useLoaderData} from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { 
 	getCountry,
@@ -43,7 +43,7 @@ export default function Country() {
 
 		      <div className="flex flex-col max-md:gap-8 gap-4 lg:flex-row lg:justify-between">
 		        <div className="flex flex-col gap-1 lg:w-1/2">
-		          <p className="flex relative">
+		          <div className="flex relative">
 		            <span className="font-semibold pr-1">
 		              Native&nbsp;Name: 
 		            </span>
@@ -53,7 +53,7 @@ export default function Country() {
 		            	items={nativeNames} 
 		            	setModalState={setNativeNamesModalState}
 		            />
-		          </p>
+		          </div>
 		          <p>
 
 		            <span className="font-semibold pr-1">
@@ -157,11 +157,16 @@ export default function Country() {
 function MultipleDataValues({modalState, heading, items, setModalState}) {
 	const VISIBLE = true
 	const HIDDEN = false
-	const [spanIsOverflown, setSpanIsOverflown] = useState(true)
+	const [spanIsOverflown, setSpanIsOverflown] = useState(false)
+
+	useEffect(()=>{
+		const valuesSpan = document.querySelector('#values-span')
+		setSpanIsOverflown(valuesSpan.scrollWidth > valuesSpan.clientWidth)
+	}, [])
 
 	return (
 		<>
-			<span className="truncate">
+			<span id="values-span" className="truncate">
     		{items.map((item, ndx, items) => {
     			return item + (items.length - 1 !== ndx ? ', ' : '')
     		})}
