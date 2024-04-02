@@ -34,6 +34,7 @@ function Country({country}) {
         className="min-w-full h-40 rounded-t overflow-y-scroll" 
         src={country.imgUrl} 
         alt={country.imgAlt}
+        loading="lazy"
       />
 
       <div className="bg-white dark:bg-dark-blue px-6 py-6 rounded-b">
