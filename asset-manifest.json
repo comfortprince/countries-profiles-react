@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/countries-profiles-react/static/css/main.b4a551c8.css",
+    "main.js": "/countries-profiles-react/static/js/main.3b7d06cc.js",
+    "static/media/desktop-hero-image.jpeg": "/countries-profiles-react/static/media/desktop-hero-image.b90852ccc18d598a9fc9.jpeg",
+    "index.html": "/countries-profiles-react/index.html",
+    "main.b4a551c8.css.map": "/countries-profiles-react/static/css/main.b4a551c8.css.map",
+    "main.3b7d06cc.js.map": "/countries-profiles-react/static/js/main.3b7d06cc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b4a551c8.css",
+    "static/js/main.3b7d06cc.js"
+  ]
+}
