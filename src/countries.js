@@ -18,8 +18,7 @@ async function getCountries(startIndex, limit) {
 	}else {
 		return countries.slice(startIndex, limit).map((country) => {
 			return {
-				// imgUrl: country.flags.png,
-				imgUrl: '#',
+				imgUrl: country.flags.png,
 				imgAlt: country.flags.alt,
 				commonName: country.name.common,
 				population: country.population,
