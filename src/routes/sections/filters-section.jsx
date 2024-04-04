@@ -27,7 +27,7 @@ export default function FiltersSection({
         "
 		  >
 	    	<i className="fas fa-search text-inherit text-sm"></i>
-	      <form
+	      <Form
 	      	className="w-full h-full"
 	      >
 	      	<input
@@ -41,7 +41,7 @@ export default function FiltersSection({
 	          value={filterText}
 	          onChange={(e) => {onFilterTextChange(e.target.value)}}
 	        />
-	      </form>  
+	      </Form>  
 		  </div>
 		  <div>
 		  	<Select 

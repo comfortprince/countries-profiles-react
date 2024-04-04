@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, Link } from 'react-router-dom'
 
 export default function Root() {
 	return (
@@ -12,9 +12,9 @@ export default function Root() {
 				"
 			>
 				<div className="text-sm md:text-2xl font-bold">
-			      <a href="/">
+			      <Link to={"/"}>
 			      	Where in the world?
-			      </a>
+			      </Link>
 			    </div>
 			    <ThemeToggler/>
 			</header>

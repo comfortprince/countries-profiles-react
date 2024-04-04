@@ -16,8 +16,6 @@ import Country, {
 
 import Index from './routes/index'
 
-import { getCountries, getCountriesByCodes } from './countries.js'
-
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -38,7 +36,9 @@ const router = createBrowserRouter([
 			},
 		]
 	}
-])
+], {
+	basename: '/countries-profiles-react'
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,4 +1,4 @@
-import {useLoaderData} from 'react-router-dom'
+import { useLoaderData, Link } from 'react-router-dom'
 import { useState, useEffect, useRef } from 'react'
 
 import { 
@@ -119,8 +119,8 @@ export default function Country() {
 		        </div>
 		        <div className="flex flex-wrap gap-2">
 		          {country.borderCountries.map((country) => (
-		          	<a
-		          		href={`/countries/${country}`} 
+		          	<Link
+		          		to={`/countries/${country}`} 
 		          		className="
 		          			inline-block 
 		          			bg-white dark:bg-dark-blue 
@@ -130,7 +130,7 @@ export default function Country() {
 		          		"
 		          	>
                   {country}
-                </a>
+                </Link>
 		          ))}
 		        </div>
 		      </div>
