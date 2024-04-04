@@ -16,6 +16,8 @@ import Country, {
 
 import Index from './routes/index'
 
+import News from './routes/news'
+
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -34,6 +36,10 @@ const router = createBrowserRouter([
 				loader: countryLoader,
 				element: <Country/>
 			},
+			{
+				path: 'news',
+				element: <News/>
+			}
 		]
 	}
 ], {

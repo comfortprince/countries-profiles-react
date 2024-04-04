@@ -8,7 +8,7 @@ export default function Root() {
 					max-sm:px-4 px-20 max-sm:py-4 py-5 
 					flex flex-row justify-between items-center 
 					bg-white text-very-dark-blue-light-mode dark:bg-dark-blue dark:text-white
-					shadow
+					shadow relative
 				"
 			>
 				<div className="text-sm md:text-2xl font-bold">

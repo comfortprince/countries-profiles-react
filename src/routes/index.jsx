@@ -52,7 +52,7 @@ export default function Index() {
 							</p>
 						</div>
 						<Link 
-							to="#!"
+							to={feature.path}
 							className="
 								px-5 py-2 w-full text-lg
 								inline-grid place-items-center 
