@@ -1,26 +1,6 @@
 import { Link } from 'react-router-dom'
 
-export default function Countries ({countries}) {
-	return (
-		<section
-			className="
-				max-md:px-6 mt-12
-			"
-		>
-			<div
-				className="
-					grid md:grid-cols-3 lg:grid-cols-4 gap-12
-				"
-			>
-				{countries.map((country, ndx) => (
-					<Country key={ndx} country={country}/>
-				))}
-			</div>
-		</section>
-	)
-}
-
-function Country({country}) {
+export default function CountryCard({country}) {
 	return (
 		<Link 
 	    className="
@@ -42,26 +22,26 @@ function Country({country}) {
           {country.commonName}
         </h2>
 
-        <p>
+        <div>
           <span className="font-semibold">
             Population:&nbsp;
           </span> 
           {country.population.toLocaleString()}
-        </p>
+        </div>
 
-        <p>
+        <div>
           <span className="font-semibold">
             Region:&nbsp; 
           </span>
           {country.region}
-        </p>
+        </div>
 
-        <p>
+        <div>
           <span className="font-semibold">
             Capital:&nbsp;
           </span>
           {country.capital}
-        </p>
+        </div>
       </div>
     </Link>
 	)

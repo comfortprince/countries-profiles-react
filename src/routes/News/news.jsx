@@ -30,7 +30,19 @@ export default function News() {
 			  </div>
 			</section>
 			<section>
-				Filters
+				<ul className="flex">
+					<li>
+						<input name="global-news" type="radio" onClick={(e)=>{console.log(e.target.value = 'off')}}/>
+						<label htmlFor="global-news">Global News</label>
+					</li>
+					<li>
+						<input name="local-news" type="radio" onClick={(e)=>{console.log(e.target.value = 'off')}}/>
+						<label htmlFor="local-news">Local News</label>
+					</li>
+					<li>
+						
+					</li>
+				</ul>
 			</section>
 			<section>
 				Topics

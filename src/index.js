@@ -1,54 +1,7 @@
-import './index.css';
+import App from './App'
 
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDom from 'react-dom/client';
 
-import {
-	RouterProvider,
-	createBrowserRouter
-} from 'react-router-dom'
+const root = ReactDom.createRoot(document.querySelector('#root'))
 
-import Root from './routes/root'
-import Countries from './routes/countries'
-import Country, {
-	loader as countryLoader
-} from './routes/country'
-
-import Index from './routes/index'
-
-import News from './routes/news'
-
-const router = createBrowserRouter([
-	{
-		path: '/',
-		element: <Root/>,
-		children: [
-			{
-				index: true,
-				element: <Index/>
-			},
-			{
-				path: 'countries',
-				element: <Countries/>
-			},
-			{
-				path: 'countries/:commonName',
-				loader: countryLoader,
-				element: <Country/>
-			},
-			{
-				path: 'news',
-				element: <News/>
-			}
-		]
-	}
-], {
-	basename: '/countries-profiles-react'
-})
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
+root.render(<App/>)

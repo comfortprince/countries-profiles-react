@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react'
 
-import { getCountries, hasMore } from '../countries.js'
+import { getCountries, hasMore } from './CountriesAPI'
 
-import CountriesSection from './sections/countries-section'
-import FiltersSection from './sections/filters-section'
+import CountriesContainer from './CountriesContainer'
 
+const LOAD_MORE_HEIGHT = 100
+const PAGE_SIZE = 12
+
+/*
+* Responsible for holding state
+*/
 export default function Countries() {
 	const [countries, setCountries] = useState([])
 	const [isLoading, setIsLoading] = useState(false)
@@ -35,11 +40,11 @@ export default function Countries() {
 
 			console.log(filterText)
 
-			if(windowHeight + scrollOffset > documentHeight - 100  
+			if(windowHeight + scrollOffset > documentHeight - LOAD_MORE_HEIGHT
 				&& hasMore(limit)
 				&& !(filterText || regionFilterText)
 			) {
-				limit += 12
+				limit += PAGE_SIZE
 				setIsLoading(true)
 
 				getCountries(startIndex, limit)
@@ -62,7 +67,7 @@ export default function Countries() {
 	}, [filterText, regionFilterText])
 
 	return (
-		<MainContainer 
+		<CountriesContainer 
 			countries={countries} 
 			isLoading={isLoading}
 			filterText={filterText} 
@@ -70,53 +75,5 @@ export default function Countries() {
 			onFilterTextChange={setFilterText}
 			onRegionFilterTextChange={setRegionFilterText}
 		/>
-	)
-}
-
-function MainContainer({
-	countries, 
-	isLoading,
-	filterText,
-	regionFilterText,
-	onFilterTextChange,
-	onRegionFilterTextChange
-}) {
-	const [filteredCountries, setFilteredCountries] = useState([])
-
-	useEffect(() => {
-		console.log('Re rendered')
-
-		if(filterText || regionFilterText){
-			getCountries(0, 300)
-			.then((countries) => {
-				setFilteredCountries(countries.filter((country) => {
-					return country.commonName.toLowerCase().includes(filterText.toLowerCase()) 
-						&& country.region.toLowerCase().includes(regionFilterText.toLowerCase())
-				}))
-			})
-			.catch((error) => {
-				console.log(error.message)
-			})
-		} else {
-			setFilteredCountries(countries)
-		}
-	}, [filterText, regionFilterText, countries])
-
-	return (
-		<>
-			<FiltersSection 
-				filterText={filterText} 
-				regionFilterText={regionFilterText}
-				onFilterTextChange={onFilterTextChange}
-				onRegionFilterTextChange={onRegionFilterTextChange}
-			/>
-			<CountriesSection countries={filteredCountries}/>
-
-			{isLoading && 
-				<div>
-					Loading
-				</div>
-			}
-		</>
 	)
 }

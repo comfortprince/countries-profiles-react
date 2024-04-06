@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
-export default function Select({ 
+export default function SelectDropdown({ 
 	options,
-	regionFilterText,
-	onRegionFilterTextChange
+	selectedOption,
+	setSelectedOption
 }) {
 	const [isOpen, setIsOpen] = useState(false)
 
@@ -21,7 +21,7 @@ export default function Select({
 				}}
 			>
 				<span>
-					{regionFilterText ? regionFilterText : 'Filter by Region'} 
+					{selectedOption ? selectedOption : 'Filter by Region'} 
 				</span>
 				<span>
 					<i className="fa-solid fa-angle-down"></i>
@@ -42,8 +42,8 @@ export default function Select({
 									setIsOpen(false)
 									option.toLowerCase().trim() 
 										=== String('Filter by Region').toLowerCase().trim() 
-										? onRegionFilterTextChange('')
-										: onRegionFilterTextChange(option)
+										? setSelectedOption('')
+										: setSelectedOption(option)
 								}}
 							>
 								{option}
