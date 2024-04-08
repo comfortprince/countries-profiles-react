@@ -17,7 +17,7 @@ export default function Hero() {
 						<br className="max-md:hidden" /> 
 						landscapes, and historical landmarks.
 					</p>
-					<ButtonLink className="w-52" to={"countries"}>
+					<ButtonLink className="w-52 font-semibold" to={"countries"}>
 						Browse Countries
 					</ButtonLink>
 				</div>

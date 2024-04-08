@@ -35,8 +35,8 @@ function Rating({rating}) {
 					className={`
 						inline-grid place-items-center 
 						rounded-full w-8 h-8
-						${num <= rating ? 'bg-orange-300 dark:bg-purple-900' 
-							: 'border-2 border-orange-300 dark:border-purple-900'
+						${num <= rating ? 'bg-orange-400 dark:bg-purple-700' 
+							: 'border-2 border-orange-400 dark:border-purple-700'
 						}
 					`}
 				>
@@ -51,7 +51,7 @@ function AuthorInfo({username}) {
 	return(
 		<div className="flex justify-start items-center gap-3 pl-2">
 			<span className="
-				bg-orange-300 dark:bg-purple-900 
+				bg-orange-400 dark:bg-purple-700 
 				w-8 h-8 rounded-full 
 				inline-grid place-items-center
 			">
