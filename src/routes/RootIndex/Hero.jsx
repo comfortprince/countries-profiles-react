@@ -5,7 +5,7 @@ import { heroImage } from '../../constants'
 export default function Hero() {
 	return(
 		<section className="py-6">
-			<div className="flex flex-col-reverse max-md:gap-4 md:flex-row justify-between relative">
+			<div className="flex flex-col-reverse max-md:items-center max-md:gap-4 md:flex-row lg:px-20 justify-between relative">
 				<div className="
 					md:h-[25rem] 
 					flex flex-col justify-center max-md:items-center 
@@ -22,7 +22,7 @@ export default function Hero() {
 					</ButtonLink>
 				</div>
 				<img 
-					className="h-[25rem] w-[25rem] rounded-full lg:absolute top-0 right-32"
+					className="h-[25rem] w-[25rem] rounded-full lg:bsolute top-0 right-32"
 					alt="A man with a backpack hiking in the mountains"
 					src={heroImage}
 				/>
