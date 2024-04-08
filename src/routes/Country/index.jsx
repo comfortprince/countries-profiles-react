@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router-dom'
 import { 
 	getCountry,
 	getCountriesByCodes
-} from '../Countries/CountriesAPI'
+} from '../api/Countries'
 
 import NavSection from './NavSection'
 import CountryDetailsSection from './CountryDetailsSection'

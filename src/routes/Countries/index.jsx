@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { getCountries, hasMore } from './CountriesAPI'
+import { getCountries, hasMore } from '../api/Countries'
 
 import CountriesContainer from './CountriesContainer'
 

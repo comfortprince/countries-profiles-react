@@ -5,7 +5,7 @@ import Loading from '../components/Loading'
 import CountriesSection from './CountriesSection'
 import FiltersSection from './FiltersSection'
 
-import { getAllCountries } from './CountriesAPI'
+import { getAllCountries } from '../api/Countries'
 
 export default function CountriesContainer({
 	countries, 
