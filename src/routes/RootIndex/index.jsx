@@ -6,10 +6,16 @@ import TrustIndicators from './TrustIndicators'
 export default function RootIndex() {
 	return (
 		<>
-			<Hero/>
+			<div className="max-sm:px-4 px-20">
+				<Hero/>
+			</div>
+
 			<TrustIndicators/>
-			<Features/>
-			<Reviews/>
+			
+			<div className="max-sm:px-4 px-20">
+				<Features/>
+				<Reviews/>
+			</div>
 		</>
 	)
 }

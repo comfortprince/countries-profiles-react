@@ -67,13 +67,15 @@ export default function Countries() {
 	}, [filterText, regionFilterText])
 
 	return (
-		<CountriesContainer 
-			countries={countries} 
-			isLoading={isLoading}
-			filterText={filterText} 
-			regionFilterText={regionFilterText}
-			onFilterTextChange={setFilterText}
-			onRegionFilterTextChange={setRegionFilterText}
-		/>
+		<div className="max-sm:px-4 px-20 max-sm:py-4 py-5">
+			<CountriesContainer 
+				countries={countries} 
+				isLoading={isLoading}
+				filterText={filterText} 
+				regionFilterText={regionFilterText}
+				onFilterTextChange={setFilterText}
+				onRegionFilterTextChange={setRegionFilterText}
+			/>
+		</div>
 	)
 }

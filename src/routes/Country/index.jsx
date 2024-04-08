@@ -12,12 +12,12 @@ export default function Country() {
 	const country = useLoaderData()
 	console.log("country")
 	return (
-		<>
+		<div className="max-sm:px-4 px-20 max-sm:py-4 py-5">
 	    <NavSection/>
 			<CountryDetailsSection 
 				country={country}
 			/>
-		</>
+		</div>
 	)
 }
 

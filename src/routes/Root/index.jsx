@@ -19,7 +19,6 @@ export default function Root() {
 			</header>
 			<main
 				className="
-					max-sm:px-4 px-20 max-sm:py-4 py-5
 					bg-very-light-gray dark:bg-very-dark-blue-dark-mode text-very-dark-blue-light-mode dark:text-white 
 					min-h-screen
 				"
