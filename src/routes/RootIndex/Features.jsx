@@ -10,7 +10,7 @@ export default function Features() {
 					key={feature.content} 
 					className="lg:px-20"
 				>
-					<div className="bg-white dark:bg-dark-blue p-4 rounded flex flex-col justify-between gap-2">
+					<div className="shadow-md bg-white dark:bg-dark-blue p-4 rounded flex flex-col justify-between gap-2">
 						<div className="flex flex-col items-center text-center">
 							<img className="scale-110 my-4" src={feature.imgUrl} alt={feature.imgAlt}/>
 							<h3 className="text-lg font-semibold pb-2">{feature.heading}</h3>

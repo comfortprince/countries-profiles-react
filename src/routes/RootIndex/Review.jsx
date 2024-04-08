@@ -1,10 +1,10 @@
 export default function Review({review, className}) {
 	return(
 		<article 
-			className={`${className} flex flex-col justify-between gap-2`}
+			className={`${className} flex flex-col gap-3`}
 		>
 			<Comment
-				className="bg-white dark:bg-dark-blue p-4 rounded" 
+				className="bg-white dark:bg-dark-blue p-4 rounded shadow-md" 
 				comment={review.comment} 
 				rating={review.rating}
 			/>
