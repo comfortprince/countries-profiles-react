@@ -1,5 +1,7 @@
 import { Outlet } from 'react-router-dom'
 
+import Footer from './Footer'
+
 import Branding from '../components/Branding'
 import ThemeToggler from '../components/ThemeToggler'
 
@@ -25,6 +27,7 @@ export default function Root() {
 			>
 				<Outlet/>			
 			</main>
+			<Footer/>
 		</>
 	)
 }

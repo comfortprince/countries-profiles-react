@@ -23,12 +23,12 @@ export default function TrustIndicators() {
 				flex max-md:flex-wrap justify-between max-md:justify-center items-center gap-4
 			" 
 		>
-				<img src={AIRBNB} className="w-10 h-10 text-red-400" />
-				<img src={AMAZON} className="w-10 h-10 text-red-400" />
-				<img src={COCACOLA} className="w-20 h-20 text-red-400" />
-				<img src={MICROSOFT} className="w-10 h-10 text-red-400" />
-				<img src={PEPSI} className="w-24 h-24 text-red-400" />
-				<img src={UBER} className="w-20 h-20 text-red-400" />
+				<img alt="AIRBNB icon" src={AIRBNB} className="w-10 h-10 text-red-400" />
+				<img alt="AMAZON icon" src={AMAZON} className="w-10 h-10 text-red-400" />
+				<img alt="COCACOLA icon" src={COCACOLA} className="w-20 h-20 text-red-400" />
+				<img alt="MICROSOFT icon" src={MICROSOFT} className="w-10 h-10 text-red-400" />
+				<img alt="PEPSI icon" src={PEPSI} className="w-24 h-24 text-red-400" />
+				<img alt="UBER icon" src={UBER} className="w-20 h-20 text-red-400" />
 		</div>
 	</section>
 	)

@@ -2,7 +2,7 @@ import { getReviews } from '../api/Reviews'
 
 import Review from './Review'
 
-export default function Reviews({}) {
+export default function Reviews() {
 	const reviews = getReviews()
 
 	return(
