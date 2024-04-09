@@ -1,13 +1,23 @@
 import { Link } from 'react-router-dom'
 
+import { useInView } from 'react-intersection-observer'
+
 export default function CountryCard({country}) {
-	return (
+	const { ref, inView } = useInView({
+    triggerOnce: true,
+    rootMargin: '0px 0px'
+  })
+
+  return (
 		<Link 
-	    className="
+      ref={ref}
+	    className={`
 	    	shadow 
 	    	flex flex-col justify-between 
 	    	bg-white dark:bg-dark-blue
-	    " 
+        hover:scale-105 transition-all duration-700 hover:shadow-lg
+	     ${inView ? 'opacity-1' : 'opacity-0'}
+      `}
 	    to={`${country.commonName}`}
   	>
       <img 
