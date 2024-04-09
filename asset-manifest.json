@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/countries-profiles-react/static/css/main.5d9fb484.css",
-    "main.js": "/countries-profiles-react/static/js/main.423863f6.js",
+    "main.css": "/countries-profiles-react/static/css/main.7fc5611d.css",
+    "main.js": "/countries-profiles-react/static/js/main.a8e7dd3d.js",
     "static/media/desktop-hero-image.jpeg": "/countries-profiles-react/static/media/desktop-hero-image.b90852ccc18d598a9fc9.jpeg",
     "static/media/cocacola.svg": "/countries-profiles-react/static/media/cocacola.e068962e55e552f2ca09d9ff8cadba1c.svg",
     "static/media/pepsi.svg": "/countries-profiles-react/static/media/pepsi.ca95b971ca1f020769bf728bf440b922.svg",
@@ -10,11 +10,11 @@
     "static/media/uber.svg": "/countries-profiles-react/static/media/uber.e8dc098057ad58aaf12431fba71c9c1c.svg",
     "index.html": "/countries-profiles-react/index.html",
     "static/media/microsoft.svg": "/countries-profiles-react/static/media/microsoft.c40b66cd705dee0cb86530a2c7d6a8c7.svg",
-    "main.5d9fb484.css.map": "/countries-profiles-react/static/css/main.5d9fb484.css.map",
-    "main.423863f6.js.map": "/countries-profiles-react/static/js/main.423863f6.js.map"
+    "main.7fc5611d.css.map": "/countries-profiles-react/static/css/main.7fc5611d.css.map",
+    "main.a8e7dd3d.js.map": "/countries-profiles-react/static/js/main.a8e7dd3d.js.map"
   },
   "entrypoints": [
-    "static/css/main.5d9fb484.css",
-    "static/js/main.423863f6.js"
+    "static/css/main.7fc5611d.css",
+    "static/js/main.a8e7dd3d.js"
   ]
 }
