@@ -1,7 +1,19 @@
+import { useInView } from 'react-intersection-observer'
+
 export default function Review({review, className}) {
+	const { ref, inView } = useInView({
+		triggerOnce: true,
+		rootMargin: '0px 0px'
+	})
+
 	return(
-		<article 
-			className={`${className} flex flex-col gap-3`}
+		<article
+			ref={ref} 
+			className={`
+				${className} flex flex-col gap-3
+				transition-opacity duration-700
+				${inView ? 'opacity-1' : 'opacity-0'}
+			`}
 		>
 			<Comment
 				className="bg-white dark:bg-dark-blue p-4 rounded shadow-md" 

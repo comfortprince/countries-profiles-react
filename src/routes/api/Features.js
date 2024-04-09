@@ -32,7 +32,7 @@ function getFeatures() {
 				on current events and developments shaping our world.`,
 			imgUrl: worldNewsIcon,
 			imgAlt: 'International News',
-			path: 'news',
+			path: '#!',
 			cta: 'Access Breaking News'
 		},
 		{

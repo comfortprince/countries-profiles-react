@@ -2,7 +2,7 @@ import Root from './Root'
 import RootIndex from './RootIndex'
 import Countries from './Countries/'
 import Country, { loader as countryLoader } from './Country'
-// import News from './news'
+import News from './News'
 
 const routes = [
 	{
@@ -22,10 +22,10 @@ const routes = [
 				loader: countryLoader,
 				element: <Country/>
 			},
-			// {
-			// 	path: 'news',
-			// 	element: <News/>
-			// }
+			{
+				path: 'news',
+				element: <News/>
+			}
 		]
 	}
 ]

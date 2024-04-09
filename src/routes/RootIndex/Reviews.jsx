@@ -12,7 +12,13 @@ export default function Reviews() {
 			</h2>
 			<div className="grid md:grid-cols-2 gap-6">
 				{reviews.slice(0, 4).map((review) => (
-					<Review className="lg:px-20" key={review.id} review={review}/>
+					<Review
+						className={`
+							lg:px-20
+						`}
+						key={review.id} 
+						review={review}
+					/>
 				))}
 			</div>
 		</section>

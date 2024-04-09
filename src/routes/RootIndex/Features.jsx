@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom'
+import { useInView } from 'react-intersection-observer'
 
 import { getFeatures } from '../api/Features'
 
 export default function Features() {
+	const { ref, inView } = useInView({
+		triggerOnce: true,
+		rootMargin: '300px 0px'
+	})
+
 	const features = getFeatures()
 
 	return (
@@ -13,8 +19,12 @@ export default function Features() {
 			<div className="grid md:grid-cols-2 gap-4">
 				{features.map((feature) => (
 					<article 
+						ref={ref}
 						key={feature.content} 
-						className="lg:px-20"
+						className={`
+							lg:px-20 relative hover:scale-105 transition-all duration-300
+							${inView ? 'opacity-1' : 'opacity-0'}
+						`}
 					>
 						<div className="shadow-md bg-white dark:bg-dark-blue p-4 rounded flex flex-col justify-between gap-2">
 							<div className="flex flex-col items-center text-center">
@@ -38,6 +48,9 @@ export default function Features() {
 									{feature.cta}
 								</span>
 							</Link>
+						</div>
+						<div className="bg-red-400 dark:bg-red-600 p-1 absolute top-0 rounded-tl">
+							Coming Soon
 						</div>
 					</article>
 				))}

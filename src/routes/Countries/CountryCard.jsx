@@ -15,7 +15,7 @@ export default function CountryCard({country}) {
 	    	shadow 
 	    	flex flex-col justify-between 
 	    	bg-white dark:bg-dark-blue
-        hover:scale-105 transition-all duration-700 hover:shadow-lg
+        hover:scale-105 transition-all duration-300 hover:shadow-lg
 	     ${inView ? 'opacity-1' : 'opacity-0'}
       `}
 	    to={`${country.commonName}`}

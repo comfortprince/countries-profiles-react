@@ -28,30 +28,34 @@ export default function SelectDropdown({
 				</span>
 			</button>
 			
-			{ isOpen && 
-				<div className="bg-white dark:bg-dark-blue rounded shadow absolute w-full mt-1 overflow-hidden">
-					{
-						options.map((option, ndx) => (
-							<div 
-								key={option}
-								className={`
-									${ndx === 0 ? 'py-2' : 'py-1'} px-6 
-									hover:bg-very-light-gray dark:hover:bg-very-dark-blue-dark-mode
-								`}
-								onClick={() => {
-									setIsOpen(false)
-									option.toLowerCase().trim() 
-										=== String('Filter by Region').toLowerCase().trim() 
-										? setSelectedOption('')
-										: setSelectedOption(option)
-								}}
-							>
-								{option}
-							</div>
-						))
-					}
-				</div>
-			}
+			<div 
+				className={`
+					${isOpen ? '' : 'h-0'}
+					bg-white dark:bg-dark-blue rounded shadow absolute w-full mt-1 overflow-hidden
+					transition-all duration-300
+				`}
+			>
+				{
+					options.map((option, ndx) => (
+						<div 
+							key={option}
+							className={`
+								${ndx === 0 ? 'py-2' : 'py-1'} px-6 
+								hover:bg-very-light-gray dark:hover:bg-very-dark-blue-dark-mode
+							`}
+							onClick={() => {
+								setIsOpen(false)
+								option.toLowerCase().trim() 
+									=== String('Filter by Region').toLowerCase().trim() 
+									? setSelectedOption('')
+									: setSelectedOption(option)
+							}}
+						>
+							{option}
+						</div>
+					))
+				}
+			</div>
 		</div>
 	)
 }
